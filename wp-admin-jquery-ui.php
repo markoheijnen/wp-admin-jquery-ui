@@ -11,9 +11,16 @@ Author URI: http://helenhousandi.com
 add_action( 'admin_menu', 'hhs_jqui_menu' );
 
 function hhs_jqui_menu() {
+	if ( 'classic' == get_user_option( 'admin_color') )
+		wp_register_style( 'jquery-ui-css', plugin_dir_url( __FILE__ ).'jquery-ui-classic.css' );
+	else
+		wp_register_style( 'jquery-ui-css', plugin_dir_url( __FILE__ ).'jquery-ui-fresh.css' );
+
+
 	$page = add_management_page( 'jQuery UI Demo', 'jQuery UI Demo', 'manage_options', 'jquery-ui-demo', 'hhs_jqui_demo' );
 	
 	add_action( 'load-'.$page, 'hhs_jqui_add_scripts' );
+	hhs_jqui_add_scripts();
 }
 
 // enqueue scripts
@@ -25,14 +32,17 @@ function hhs_jqui_add_scripts() {
 	wp_enqueue_script( 'jquery-ui-progressbar' );
 	wp_enqueue_script( 'jquery-ui-slider' );
 	wp_enqueue_script( 'jquery-ui-tabs' );
-	wp_enqueue_script( 'jquery-ui-demo', plugin_dir_url( __FILE__ ).'jquery-ui-demo.js', array( 'jquery-ui-core' ) );
-	
-	wp_enqueue_style ( 'jquery-ui-demo', plugin_dir_url( __FILE__ ).'jquery-ui-demo.css' );
-	
-	if ( 'classic' == get_user_option( 'admin_color') )
-		wp_enqueue_style ( 'jquery-ui-css', plugin_dir_url( __FILE__ ).'jquery-ui-classic.css' );
-	else
-		wp_enqueue_style ( 'jquery-ui-css', plugin_dir_url( __FILE__ ).'jquery-ui-fresh.css' );
+	wp_enqueue_script( 'jquery-ui-demo', plugin_dir_url( __FILE__ ) . 'jquery-ui-demo.js', array( 'jquery-ui-core' ) );
+
+	wp_enqueue_style ( 'jquery-ui-demo', plugin_dir_url( __FILE__ ) . 'jquery-ui-demo.css' );
+
+	wp_enqueue_style( 'jquery-ui-css' );
+
+	//Remove this since all of the css seems to be in editor-buttons to. So use that to clean things up for the TinyMCE link dialog
+	wp_deregister_style( 'wp-jquery-ui-dialog' );
+
+	wp_deregister_style( 'editor-buttons' );
+	wp_register_style( 'editor-buttons', plugin_dir_url( __FILE__ ) . 'wordpress/css/editor.dev.css' );
 }
 
 // page display
