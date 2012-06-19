@@ -17,7 +17,5 @@ Deregistered wp-jquery-ui-dialog since it is duplicated with the css in editor-b
 
 Other Notes
 =========================
-.ui-widget-overlay
-opacity is now .75 but was .60 for the TinyMCE link box
 
 Removed margin #wp-link #link-options and changed top padding to 0 so only bottom has a padding of 14px.

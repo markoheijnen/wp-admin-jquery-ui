@@ -33,6 +33,8 @@ function hhs_jqui_add_scripts() {
 	wp_enqueue_script( 'jquery-ui-progressbar' );
 	wp_enqueue_script( 'jquery-ui-slider' );
 	wp_enqueue_script( 'jquery-ui-tabs' );
+	wp_enqueue_script( 'jquery-ui-demo', plugin_dir_url( __FILE__ ) . 'jquery-ui-demo.js', array( 'jquery-ui-core' ) );
+	wp_enqueue_style ( 'jquery-ui-demo', plugin_dir_url( __FILE__ ) . 'jquery-ui-demo.css' );
 
 	wp_enqueue_style( 'jquery-ui-css' );
 
