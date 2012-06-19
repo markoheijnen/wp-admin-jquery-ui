@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
 	$("#accordion").accordion({ header: "h3" });
 
 	// Tabs
-	$('#tabs').tabs();
+	$('.tabs').tabs();
 
 
 	// Dialog			

@@ -574,3 +574,23 @@ button.ui-button::-moz-focus-inner { border: 0; padding: 0; } /* reset extra pad
 	background-image: -webkit-linear-gradient(bottom, rgb(114,167,207) 0%, rgb(144,197,238) 100%);
 	background-image: -ms-linear-gradient(bottom, rgb(114,167,207) 0%, rgb(144,197,238) 100%);
 }
+
+
+
+.wp-tabs, .wp-tabs .ui-tabs-nav, .wp-tabs .ui-state-default {
+	background: none;
+	border: 0px;
+}
+
+.wp-tabs .ui-tabs-nav {
+	padding: 0px;
+}
+
+.wp-tabs .ui-tabs-selected, .wp-tabs .ui-tabs-panel {
+	background-color: #fff;
+	border-color: #DFDFDF;
+	border-style: solid;
+	border-width: 1px;
+}
+
+
