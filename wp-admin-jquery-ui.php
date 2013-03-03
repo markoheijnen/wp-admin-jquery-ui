@@ -3,7 +3,7 @@
 Plugin Name: jQuery UI Demo Page
 Plugin URI: http://wp.trunk
 Description: jQuery UI Demo Page in the WordPress admin
-Author: Helen Hou-Sandi
+Author: Marko Heijnen & Helen Hou-Sandi
 Version: 1.0
 Author URI: http://helenhousandi.com
 */
@@ -21,6 +21,7 @@ function hhs_jqui_menu() {
 
 	add_action( 'load-'.$page, 'hhs_jqui_add_scripts' );
 	hhs_jqui_add_scripts();
+	mh_jqui_overwrite_wp();
 }
 
 // enqueue scripts
@@ -37,12 +38,18 @@ function hhs_jqui_add_scripts() {
 	wp_enqueue_style ( 'jquery-ui-demo', plugin_dir_url( __FILE__ ) . 'jquery-ui-demo.css' );
 
 	wp_enqueue_style( 'jquery-ui-css' );
+}
+
+function mh_jqui_overwrite_wp() {
+	global $wp_version;
 
 	//Remove this since all of the css seems to be in editor-buttons to. So use that to clean things up for the TinyMCE link dialog
 	wp_deregister_style( 'wp-jquery-ui-dialog' );
 
-	wp_deregister_style( 'editor-buttons' );
-	wp_register_style( 'editor-buttons', plugin_dir_url( __FILE__ ) . 'wordpress/css/editor.dev.css' );
+	if ( version_compare( $wp_version, '3.5.99', '<' ) && version_compare( $wp_version, '3.5', '>=' ) ) {
+		wp_deregister_style( 'editor-buttons' );
+		wp_register_style( 'editor-buttons', plugin_dir_url( __FILE__ ) . 'wordpress/css/editor.35.css' );
+	}
 }
 
 // page display
